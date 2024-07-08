@@ -1,5 +1,7 @@
+
 import express from "express";
 // import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -8,6 +10,7 @@ import connectDB from "./config/connectDb.js";
 import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 const app = express();
+app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -26,7 +29,7 @@ app.get("/", (req, res) => {
 });
 
 // api end point middleware
-app.use("/api", authRoutes);
+app.use("/api/users", authRoutes);
 
 connectDB()
   .then(() => {

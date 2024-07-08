@@ -42,12 +42,14 @@ A simple chatting system built with Node.js, Express, MongoDB, and Socket.IO.
    Create a .env file in the root directory with the following:
    ```bash
    PORT=3000 
-   MONGODB_URI=mongodb://localhost:27017/chatting-system ```
+   MONGODB_URI=mongodb://localhost:27017/chatting-system 
+   ```
 4 Replace mongodb://localhost:27017/chatting-system with your MongoDB URI.
 
 5. Start the server:
    ```bash
    npm start
+   ```
 6. Open your browser and go to http://localhost:3000 to see the application.
 
 Usage
