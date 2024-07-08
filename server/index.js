@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import connectDB from "./config/connectDb.js";
-connectDB();
+
 dotenv.config();
 const app = express();
 
@@ -23,6 +23,12 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to connect to the database", error);
+  });
