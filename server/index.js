@@ -1,13 +1,15 @@
 import express from "express";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import cors from "cors";
 
 import connectDB from "./config/connectDb.js";
-
+import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 const app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
@@ -22,6 +24,9 @@ app.get("/", (req, res) => {
     message: "server is running at " + PORT,
   });
 });
+
+// api end point middleware
+app.use("/api", authRoutes);
 
 connectDB()
   .then(() => {
